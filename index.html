@@ -23,7 +23,7 @@
                 <a href="" class="link">о нас</a>
                 <a href="" class="link">сообщество</a>
                 <a href="" class="link">новости</a>
-                <div class="toggle"><svg width="13" height="12" viewBox="0 0 13 12"
+                <div class="toggle light"><svg width="13" height="12" viewBox="0 0 13 12"
                         fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path
                             d="M1.39726 9.85753L2.16986 10.6301L3.15616 9.64931L2.37808 8.87123L1.39726 9.85753ZM5.47945 12C5.65479 12 6.57534 12 6.57534 12V10.3836H5.47945V12ZM6.0274 2.71233C5.15545 2.71233 4.31922 3.05871 3.70266 3.67526C3.0861 4.29182 2.73973 5.12805 2.73973 6C2.73973 6.87194 3.0861 7.70818 3.70266 8.32473C4.31922 8.94129 5.15545 9.28767 6.0274 9.28767C6.89934 9.28767 7.73557 8.94129 8.35213 8.32473C8.96869 7.70818 9.31507 6.87194 9.31507 6C9.31507 4.18082 7.84109 2.71233 6.0274 2.71233ZM10.411 6.54794H12.0548V5.45205H10.411V6.54794ZM8.89863 9.64931L9.88493 10.6301L10.6575 9.85753L9.67671 8.87123L8.89863 9.64931ZM10.6575 2.14247L9.88493 1.36986L8.89863 2.35068L9.67671 3.12877L10.6575 2.14247ZM6.57534 0H5.47945V1.61644H6.57534V0ZM1.64384 5.45205H0V6.54794H1.64384V5.45205ZM3.15616 2.35068L2.16986 1.36986L1.39726 2.14247L2.37808 3.12877L3.15616 2.35068Z"
@@ -37,6 +37,18 @@
                     </svg>
                 </div>
             </div>
+            <script>const toggle = document.querySelector('.toggle');
+                toggle.onclick = () => {
+                    if (toggle.classList.contains('light')) {
+                        toggle.classList.remove('light');
+                        toggle.classList.add('dark');
+                    }
+                    else {
+                        toggle.classList.add('light');
+                        toggle.classList.remove('dark');
+                    }
+                }
+            </script>
             <button class="header__btn">Войти</button>
         </header>
         <main id="main">

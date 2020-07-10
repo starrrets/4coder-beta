@@ -66,7 +66,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #121212;
+  background: #9ab9d5;
   width: 40px;
   height: 20px;
   border-radius: 20px;
@@ -75,6 +75,40 @@
   grid-column: 1/4;
   -ms-grid-column-align: center;
       justify-self: center;
+  cursor: pointer;
+}
+
+#header .links .toggle svg {
+  z-index: 1;
+}
+
+#header .links .toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #305373;
+  z-index: 0;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#header .links .toggle.light::after {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+#header .links .toggle.dark {
+  background: #305373;
+}
+
+#header .links .toggle.dark::after {
+  background: #9ab9d5;
+  -webkit-transform: translateX(20px);
+          transform: translateX(20px);
 }
 
 #header .header__btn {

@@ -41,12 +41,39 @@
 			grid-template-columns: 1fr 1fr;
 			justify-items: center;
 			align-items: center;
-			background: $lightThemeText;
+			background: darken($color: $lightFooter, $amount: 20);
 			width: 40px;
 			height: 20px;
 			border-radius: 20px;
 			grid-column: 1/4;
 			justify-self: center;
+			cursor: pointer;
+
+			& svg {
+				z-index: 1;
+			}
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 20px;
+				height: 20px;
+				border-radius: 50%;
+				background: darken($color: $lightFooter, $amount: 60);
+				z-index: 0;
+				transition: all 0.4s;
+			}
+			&.light::after {
+				transform: translateX(0);
+			}
+			&.dark {
+				background: darken($color: $lightFooter, $amount: 60);
+			}
+			&.dark::after {
+				background: darken($color: $lightFooter, $amount: 20);
+				transform: translateX(20px);
+			}
 		}
 	}
 	.header__btn {
