@@ -57,6 +57,15 @@
 }
 
 #header .links .toggle {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: #121212;
   width: 40px;
   height: 20px;
@@ -164,8 +173,8 @@
 }
 
 #main #startSection .startSection__form .socialRegistration .icon svg {
-  height: 24px;
-  max-width: 24px;
+  height: 20px;
+  max-width: 22px;
 }
 
 #main #startSection .startSection__form #signUp__btn {
@@ -288,7 +297,7 @@
   top: 50%;
   -webkit-transform: translate(0, -50%);
           transform: translate(0, -50%);
-  left: 10px;
+  left: 5px;
 }
 
 #main #ctaSection {
