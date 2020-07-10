@@ -45,6 +45,12 @@
 		border-radius: 10px;
 		color: $lightBtnText;
 		cursor: pointer;
+		&:hover {
+			background-color: darken($color: $lightFooter, $amount: 5);
+		}
+		&:active {
+			background-color: darken($color: $lightFooter, $amount: 10);
+		}
 	}
 }
 .logo {
@@ -56,8 +62,9 @@
 	.logo__image {
 		width: 50px;
 		height: 50px;
-		border-radius: 10px;
-		background: $accentColor;
+		// border-radius: 10px;
+		// background: $accentColor;
+		background-image: url(/logo.svg);
 	}
 	.logo__text {
 		font-weight: 700;
@@ -108,9 +115,12 @@
 				background: $accentColor;
 				outline: none;
 				border: none;
+				cursor: pointer;
 				&:hover {
-					background: #121212;
-					color: $accentColor;
+					background: lighten($color: $accentColor, $amount: 5);
+				}
+				&:active {
+					background: lighten($color: $accentColor, $amount: 10);
 				}
 			}
 			.input {
@@ -133,6 +143,7 @@
 		}
 	}
 	#featuresSection {
+		position: relative;
 		display: grid;
 		justify-items: center;
 		padding: 30px 0;
@@ -141,6 +152,7 @@
 		h2 {
 			font-size: 26px;
 			position: relative;
+			margin-bottom: 20px;
 			&::after {
 				content: '';
 				width: 50px;
@@ -151,10 +163,75 @@
 				top: 45px;
 				left: 50%;
 				transform: translate(-50%, 0);
+				margin-bottom: 20px;
 			}
+		}
+		.card {
+			display: grid;
+			grid-row-gap: 10px;
+			width: 75%;
+			text-align: center;
+			justify-items: center;
+			align-items: center;
+			z-index: 2;
+			.card__icon {
+				position: relative;
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				background: #ffd6da;
+			}
+			.card__title {
+				font-weight: 900;
+				font-size: 16px;
+			}
+			.card__text {
+				font-size: 14px;
+			}
+			.card__link {
+				font-size: 14px;
+				color: $accentColor;
+			}
+		}
+		#backText {
+			position: absolute;
+			top: 50%;
+			transform: translate(0, -50%);
+			left: 10px;
 		}
 	}
 	#ctaSection {
+		padding: 30px 0;
+		display: grid;
+		text-align: center;
+		justify-items: center;
+		align-items: center;
+		grid-row-gap: 20px;
+		.ctaSection__title {
+			font-size: 32px;
+			font-weight: 900;
+			width: 85%;
+		}
+		.ctaSection__text {
+			font-size: 14px;
+			width: 80%;
+		}
+		.signUp__btn {
+			width: 180px;
+			height: 45px;
+			font-size: 18px;
+			background: $accentColor;
+			border: none;
+			outline: none;
+			border-radius: 10px;
+			cursor: pointer;
+			&:hover {
+				background: lighten($color: $accentColor, $amount: 5);
+			}
+			&:active {
+				background: lighten($color: $accentColor, $amount: 10);
+			}
+		}
 	}
 }
 

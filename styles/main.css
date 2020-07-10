@@ -70,6 +70,14 @@
   cursor: pointer;
 }
 
+#header .header__btn:hover {
+  background-color: #d0dfec;
+}
+
+#header .header__btn:active {
+  background-color: #bed2e4;
+}
+
 .logo {
   display: -ms-grid;
   display: grid;
@@ -85,8 +93,7 @@
 .logo .logo__image {
   width: 50px;
   height: 50px;
-  border-radius: 10px;
-  background: #ff4655;
+  background-image: url(/logo.svg);
 }
 
 .logo .logo__text {
@@ -149,11 +156,15 @@
   background: #ff4655;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 
 #main #startSection .startSection__form #signUp__btn:hover {
-  background: #121212;
-  color: #ff4655;
+  background: #ff606c;
+}
+
+#main #startSection .startSection__form #signUp__btn:active {
+  background: #ff7984;
 }
 
 #main #startSection .startSection__form .input {
@@ -177,6 +188,7 @@
 }
 
 #main #featuresSection {
+  position: relative;
   display: -ms-grid;
   display: grid;
   justify-items: center;
@@ -188,6 +200,7 @@
 #main #featuresSection h2 {
   font-size: 26px;
   position: relative;
+  margin-bottom: 20px;
 }
 
 #main #featuresSection h2::after {
@@ -201,6 +214,92 @@
   left: 50%;
   -webkit-transform: translate(-50%, 0);
           transform: translate(-50%, 0);
+  margin-bottom: 20px;
+}
+
+#main #featuresSection .card {
+  display: -ms-grid;
+  display: grid;
+  grid-row-gap: 10px;
+  width: 75%;
+  text-align: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  z-index: 2;
+}
+
+#main #featuresSection .card .card__icon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #ffd6da;
+}
+
+#main #featuresSection .card .card__title {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+#main #featuresSection .card .card__text {
+  font-size: 14px;
+}
+
+#main #featuresSection .card .card__link {
+  font-size: 14px;
+  color: #ff4655;
+}
+
+#main #featuresSection #backText {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translate(0, -50%);
+          transform: translate(0, -50%);
+  left: 10px;
+}
+
+#main #ctaSection {
+  padding: 30px 0;
+  display: -ms-grid;
+  display: grid;
+  text-align: center;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  grid-row-gap: 20px;
+}
+
+#main #ctaSection .ctaSection__title {
+  font-size: 32px;
+  font-weight: 900;
+  width: 85%;
+}
+
+#main #ctaSection .ctaSection__text {
+  font-size: 14px;
+  width: 80%;
+}
+
+#main #ctaSection .signUp__btn {
+  width: 180px;
+  height: 45px;
+  font-size: 18px;
+  background: #ff4655;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#main #ctaSection .signUp__btn:hover {
+  background: #ff606c;
+}
+
+#main #ctaSection .signUp__btn:active {
+  background: #ff7984;
 }
 
 #footer {
