@@ -154,7 +154,18 @@
   width: 40px;
   height: 40px;
   border-radius: 5px;
-  background: #000;
+  background: #e7e0da;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main #startSection .startSection__form .socialRegistration .icon svg {
+  height: 24px;
+  max-width: 24px;
 }
 
 #main #startSection .startSection__form #signUp__btn {
@@ -245,6 +256,17 @@
   height: 60px;
   border-radius: 50%;
   background: #ffd6da;
+  display: -ms-grid;
+  display: grid;
+  justify-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#main #featuresSection .card .card__icon svg {
+  height: 24px;
+  max-width: 24px;
 }
 
 #main #featuresSection .card .card__title {

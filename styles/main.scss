@@ -112,7 +112,14 @@
 					width: 40px;
 					height: 40px;
 					border-radius: 5px;
-					background: #000;
+					background: #e7e0da;
+					display: grid;
+					justify-items: center;
+					align-items: center;
+					& svg {
+						height: 24px;
+						max-width: 24px;
+					}
 				}
 			}
 			#signUp__btn {
@@ -188,6 +195,13 @@
 				height: 60px;
 				border-radius: 50%;
 				background: #ffd6da;
+				display: grid;
+				justify-items: center;
+				align-items: center;
+				& svg {
+					height: 24px;
+					max-width: 24px;
+				}
 			}
 			.card__title {
 				font-weight: 900;
