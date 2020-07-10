@@ -4,6 +4,15 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   font-family: 'PT Sans', sans-serif;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
 }
 
 #wrapper {
