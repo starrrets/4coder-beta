@@ -13,14 +13,30 @@
 ::-moz-focus-inner {
 	border: 0;
 }
+
+::-moz-selection {
+	background: $accentColor;
+	color: #fff;
+}
+::selection {
+	background: $accentColor;
+	color: #fff;
+}
+
 #wrapper {
 	width: 100%;
 	height: 100%;
 	display: grid;
 	grid-template-rows: 200px 1fr 200px;
+	@include breakpoint(medium) {
+		grid-template-rows: 200px 1fr 150px;
+	}
+	@include breakpoint(xl) {
+		grid-template-rows: 80px 1fr 150px;
+	}
 }
 #header {
-	background: $lightHeader;
+	background: $light;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -35,13 +51,17 @@
 			color: $lightThemeText;
 			text-decoration: none;
 		}
+		.link:hover {
+			text-decoration: underline;
+			color: $accentColor;
+		}
 		.toggle {
 			position: relative;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
 			justify-items: center;
 			align-items: center;
-			background: darken($color: $lightFooter, $amount: 20);
+			background: darken($color: $light, $amount: 20);
 			width: 40px;
 			height: 20px;
 			border-radius: 20px;
@@ -60,7 +80,7 @@
 				width: 20px;
 				height: 20px;
 				border-radius: 50%;
-				background: darken($color: $lightFooter, $amount: 60);
+				background: darken($color: $light, $amount: 60);
 				z-index: 0;
 				transition: all 0.4s;
 			}
@@ -68,10 +88,10 @@
 				transform: translateX(0);
 			}
 			&.dark {
-				background: darken($color: $lightFooter, $amount: 60);
+				background: darken($color: $light, $amount: 60);
 			}
 			&.dark::after {
-				background: darken($color: $lightFooter, $amount: 20);
+				background: darken($color: $light, $amount: 20);
 				transform: translateX(20px);
 			}
 		}
@@ -79,17 +99,34 @@
 	.header__btn {
 		border: none;
 		outline: none;
-		background: #ffffff;
+		background: #ddd;
 		width: 150px;
 		height: 40px;
 		border-radius: 10px;
-		color: $lightBtnText;
+		color: $lightText;
 		cursor: pointer;
 		&:hover {
-			background-color: darken($color: $lightFooter, $amount: 5);
+			background-color: $accentColor;
+			color: #fff;
 		}
 		&:active {
-			background-color: darken($color: $lightFooter, $amount: 10);
+			background-color: darken($color: $accentColor, $amount: 5);
+		}
+	}
+	@include breakpoint(medium) {
+		.links {
+			grid-template-columns: auto auto auto auto;
+			.toggle {
+				grid-column: unset;
+			}
+		}
+	}
+	@include breakpoint(xl) {
+		& {
+			flex-direction: row;
+			height: 80px;
+			justify-content: space-between;
+			padding: 0 calc(10% + 5vw);
 		}
 	}
 }
@@ -102,8 +139,6 @@
 	.logo__image {
 		width: 50px;
 		height: 50px;
-		// border-radius: 10px;
-		// background: $accentColor;
 		background-image: url(/logo.svg);
 	}
 	.logo__text {
@@ -136,6 +171,9 @@
 			background: $lightFormBackground;
 			border-radius: 10px;
 			padding: 20px 0;
+			h2 {
+				font-size: 24px;
+			}
 			.socialRegistration {
 				display: grid;
 				grid-template-columns: repeat(5, 40px);
@@ -144,7 +182,7 @@
 					width: 40px;
 					height: 40px;
 					border-radius: 5px;
-					background: #e7e0da;
+					background: #dddddd;
 					display: grid;
 					justify-items: center;
 					align-items: center;
@@ -167,7 +205,7 @@
 					background: lighten($color: $accentColor, $amount: 5);
 				}
 				&:active {
-					background: lighten($color: $accentColor, $amount: 10);
+					background: #ff3344;
 				}
 			}
 			.input {
@@ -176,16 +214,82 @@
 				height: 40px;
 				padding: 0 10px;
 				border-radius: 5px;
-				border: 1px solid #93877380;
+				border: 1px solid #aaaaaa80;
 				&:focus {
-					border-color: #938773;
+					border-color: #aaaaaa;
+				}
+				&::placeholder {
+					color: #aaaaaa;
 				}
 			}
 			p {
 				width: 80%;
 				font-size: 12px;
-				color: #938773;
+				color: #aaaaaa;
 				text-align: center;
+			}
+		}
+		@include breakpoint(medium) {
+			& {
+				padding: 50px 0;
+				grid-row-gap: 50px;
+			}
+			.startSection__title {
+				width: 80%;
+				h1 {
+					font-size: 40px;
+					padding-bottom: 15px;
+				}
+				p {
+					font-size: 18px;
+				}
+			}
+			.startSection__form {
+				width: 80%;
+			}
+		}
+		@include breakpoint(xl) {
+			& {
+				padding: 100px calc(10% + 5vw);
+				grid-template-columns: auto auto;
+			}
+			.startSection__title {
+				width: 100%;
+
+				h1 {
+					justify-self: left;
+					font-size: calc(30px + 1vw);
+					padding-bottom: 40px;
+				}
+				p {
+					width: 90%;
+					max-width: 610px;
+					font-size: 20px;
+					line-height: 40px;
+				}
+			}
+			.startSection__form {
+				width: 390px;
+				height: 500px;
+
+				.socialRegistration {
+					grid-template-columns: repeat(5, 50px);
+					grid-column-gap: 20px;
+					.icon {
+						width: 50px;
+						height: 50px;
+					}
+				}
+				#signUp__btn {
+					height: 50px;
+					font-size: 16px;
+				}
+				.input {
+					width: 330px;
+				}
+				p {
+					width: 330px;
+				}
 			}
 		}
 	}
@@ -195,7 +299,7 @@
 		justify-items: center;
 		padding: 30px 0;
 		grid-row-gap: 30px;
-		background: $lightHeader;
+		background: $accentColor;
 		h2 {
 			font-size: 26px;
 			position: relative;
@@ -204,7 +308,7 @@
 				content: '';
 				width: 50px;
 				height: 4px;
-				background: $accentColor;
+				background: #fff;
 				border-radius: 10px;
 				position: absolute;
 				top: 45px;
@@ -214,25 +318,36 @@
 			}
 		}
 		.card {
+			position: relative;
 			display: grid;
-			grid-row-gap: 10px;
+			// grid-row-gap: 10px;
 			width: 75%;
-			text-align: center;
-			justify-items: center;
-			align-items: center;
+			height: 200px;
+			border-radius: 20px;
+			grid-template-rows: 60px 1fr;
+			text-align: left;
+			justify-items: left;
+			// align-items: center;
 			z-index: 2;
+			background: rgba(255, 255, 255, 0.8);
+			padding: 15px 15px;
+			transition: all 0.4s;
+			cursor: pointer;
+			&:hover {
+				background: #f4d8cd;
+			}
+			.card__block {
+				grid-row: 2;
+			}
 			.card__icon {
 				position: relative;
-				width: 60px;
-				height: 60px;
-				border-radius: 50%;
-				background: #ffd6da;
 				display: grid;
-				justify-items: center;
+				justify-items: left;
 				align-items: center;
+				margin-bottom: 20px;
 				& svg {
-					height: 24px;
-					max-width: 24px;
+					height: 30px;
+					max-width: 30px;
 				}
 			}
 			.card__title {
@@ -241,10 +356,23 @@
 			}
 			.card__text {
 				font-size: 14px;
+				width: 100%;
 			}
 			.card__link {
+				position: absolute;
+				bottom: 15px;
+				right: 15px;
+
 				font-size: 14px;
-				color: $accentColor;
+				color: #fff;
+				background: #000;
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				text-align: center;
+				line-height: 40px;
+				text-decoration: none;
+				justify-self: right;
 			}
 		}
 		#backText {
@@ -252,6 +380,101 @@
 			top: 50%;
 			transform: translate(0, -50%);
 			left: 5px;
+			height: 75%;
+		}
+		#backTextH {
+			position: absolute;
+			bottom: 60px;
+			width: 98vw;
+			// max-width: 1800px;
+			left: 50%;
+			transform: translate(-50%, 0);
+			opacity: 0;
+			visibility: hidden;
+		}
+		@include breakpoint(medium) {
+			h2 {
+				font-size: 46px;
+				&::after {
+					top: 70px;
+					width: 100px;
+				}
+			}
+			.card {
+				// width: 50%;
+				// grid-row-gap: 20px;
+				// .card__icon {
+				// 	width: 100px;
+				// 	height: 100px;
+				// 	& svg {
+				// 		height: 40px;
+				// 		max-width: 40px;
+				// 	}
+				// }
+				.card__title {
+					font-size: 22px;
+				}
+				.card__text {
+					font-size: 16px;
+					width: 90%;
+				}
+				.card__link {
+					font-size: 16px;
+				}
+			}
+		}
+		@include breakpoint(xl) {
+			& {
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: 200px;
+				height: 90vh;
+				max-height: 850px;
+				min-height: 850px;
+				grid-row-gap: 0;
+				padding: 45px 0;
+			}
+			h2 {
+				font-size: 54px;
+				grid-column: 1/4;
+				z-index: 2;
+				&::after {
+					top: 100px;
+				}
+			}
+			#backText {
+				opacity: 0;
+				visibility: hidden;
+			}
+			#backTextH {
+				opacity: 1;
+				visibility: visible;
+			}
+			.card {
+				grid-row: 2;
+				height: 375px;
+				width: 280px;
+				margin-bottom: 60px;
+				align-self: baseline;
+				.card__title {
+					position: absolute;
+					top: 15px;
+					left: 15px;
+					font-size: 20px;
+				}
+				.card__text {
+					font-size: 16px;
+					width: 100%;
+				}
+				.card__link {
+					font-size: 20px;
+				}
+			}
+			.card:nth-of-type(1) {
+				justify-self: right;
+			}
+			.card:nth-of-type(3) {
+				justify-self: left;
+			}
 		}
 	}
 	#ctaSection {
@@ -283,20 +506,50 @@
 				background: lighten($color: $accentColor, $amount: 5);
 			}
 			&:active {
-				background: lighten($color: $accentColor, $amount: 10);
+				background: #ff3344;
+			}
+		}
+		@include breakpoint(medium) {
+			& {
+				padding: 50px 0;
+				grid-row-gap: 35px;
+			}
+			.ctaSection__title {
+				font-size: 48px;
+			}
+			.ctaSection__text {
+				font-size: 18px;
+			}
+			.signUp__btn {
+				width: 250px;
+				height: 60px;
+				font-size: 20px;
+			}
+		}
+		@include breakpoint(xl) {
+			& {
+				padding: 100px 0;
+				grid-row-gap: 35px;
+			}
+			.ctaSection__title {
+				font-size: 54px;
+				max-width: 700px;
+			}
+			.ctaSection__text {
+				font-size: 20px;
 			}
 		}
 	}
 }
 
 #footer {
-	background: $lightFooter;
+	background: $light;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
 	#footer__text {
-		color: $lightFooterText;
+		color: $lightText;
 		font-size: 12px;
 	}
 	.social__links {
@@ -319,6 +572,34 @@
 					fill: $accentColor;
 				}
 			}
+		}
+	}
+	@include breakpoint(medium) {
+		& {
+			display: grid;
+			grid-template-columns: 140px 180px 1fr;
+			padding: 0 30px;
+			height: 150px;
+		}
+
+		.logo {
+			width: 140px;
+			grid-column-gap: 10px;
+			border-right: 1px solid #1f1f1f;
+			padding-right: 20px;
+		}
+		#footer__text {
+			justify-self: right;
+			width: 160px;
+		}
+		.social__links {
+			justify-self: right;
+			grid-column-gap: 10px;
+		}
+	}
+	@include breakpoint(xl) {
+		& {
+			padding: 0 calc(10% + 5vw);
 		}
 	}
 }

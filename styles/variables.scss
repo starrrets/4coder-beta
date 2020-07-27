@@ -1,8 +1,22 @@
-$lightHeader: #f1f5f9;
+$light: #f5f5f5;
 $lightFooter: #e2ebf3;
-$lightFooterText: #557b9c;
-$lightSocialColor: #415b76;
+$lightText: #1f1f1f;
+$lightSocialColor: #1f1f1f;
 $accentColor: #ff4655;
 $lightThemeText: #121212;
 $lightBtnText: #a30008;
-$lightFormBackground: #f7f5f3;
+$lightFormBackground: #f5f5f5;
+$breakpoints: (
+	small: 320px,
+	medium: 600px,
+	large: 1024px,
+	xl: 1366px,
+);
+@mixin breakpoint($mq-breakpoint, $mq-breakpoints: $breakpoints) {
+	@if map-has-key($mq-breakpoints, $mq-breakpoint) {
+		$mq-breakpoint: map-get($mq-breakpoints, $mq-breakpoint);
+	}
+	@media screen and (min-width: #{$mq-breakpoint}) {
+		@content;
+	}
+}
