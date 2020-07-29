@@ -31,8 +31,78 @@
 	@include breakpoint(medium) {
 		grid-template-rows: 200px 1fr 150px;
 	}
-	@include breakpoint(xl) {
+	@include breakpoint(large) {
 		grid-template-rows: 80px 1fr 150px;
+	}
+	&.dark {
+		background: #121212;
+		#header {
+			background: $dark;
+			color: $darkText;
+			& * {
+				color: $darkText;
+			}
+			.header__btn {
+				border-color: #707070;
+				background: $dark;
+				&:hover {
+					background-color: lighten($color: $dark, $amount: 5);
+				}
+				&:active {
+					background-color: #121212;
+				}
+			}
+		}
+		#main {
+			color: $darkText;
+			#startSection {
+				.startSection__form {
+					background: $darkFormBackground;
+					.input {
+						background: $dark;
+						color: #eee;
+						border: 1px solid #aaaaaa80;
+						&:focus {
+							border-color: #aaaaaa;
+						}
+						&::placeholder {
+							color: #aaaaaa;
+						}
+					}
+				}
+			}
+			#featuresSection {
+				background: $dark;
+				h2 {
+					&::after {
+						background: $accentColor;
+					}
+				}
+				.card {
+					background: #121212e6;
+					.card__link {
+						background: #eee;
+						color: #121212;
+					}
+					&:hover {
+						background: #000;
+					}
+				}
+			}
+		}
+		#footer {
+			background: $dark;
+			color: $darkText;
+			.logo {
+				border-right: 1px solid #eee;
+			}
+			#footer__text {
+				color: #eee;
+			}
+			.link:hover .link__icon path {
+				fill: $accentColor;
+			}
+		}
 	}
 }
 #header {
@@ -41,6 +111,14 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	* {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 	.links {
 		display: grid;
 		grid-column-gap: 30px;
@@ -48,14 +126,14 @@
 		grid-template-columns: auto auto auto;
 		.link {
 			font-size: 14px;
-			color: $lightThemeText;
+			color: $lightText;
 			text-decoration: none;
 		}
 		.link:hover {
 			text-decoration: underline;
 			color: $accentColor;
 		}
-		.toggle {
+		#toggle {
 			position: relative;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
@@ -82,7 +160,6 @@
 				border-radius: 50%;
 				background: darken($color: $light, $amount: 60);
 				z-index: 0;
-				transition: all 0.4s;
 			}
 			&.light::after {
 				transform: translateX(0);
@@ -91,7 +168,7 @@
 				background: darken($color: $light, $amount: 60);
 			}
 			&.dark::after {
-				background: darken($color: $light, $amount: 20);
+				background: $accentColor;
 				transform: translateX(20px);
 			}
 		}
@@ -99,33 +176,39 @@
 	.header__btn {
 		border: none;
 		outline: none;
-		background: #ddd;
+		font-weight: 900;
+		color: #1f1f1f;
+		border: 1px solid #aaa;
 		width: 150px;
 		height: 40px;
 		border-radius: 10px;
 		color: $lightText;
 		cursor: pointer;
 		&:hover {
-			background-color: $accentColor;
-			color: #fff;
+			background-color: #ddd;
 		}
 		&:active {
-			background-color: darken($color: $accentColor, $amount: 5);
+			background-color: #d2d2d2;
 		}
 	}
 	@include breakpoint(medium) {
 		.links {
 			grid-template-columns: auto auto auto auto;
-			.toggle {
+			#toggle {
 				grid-column: unset;
 			}
 		}
 	}
-	@include breakpoint(xl) {
+	@include breakpoint(large) {
 		& {
 			flex-direction: row;
 			height: 80px;
 			justify-content: space-between;
+			padding: 0 5%;
+		}
+	}
+	@include breakpoint(xl) {
+		& {
 			padding: 0 calc(10% + 5vw);
 		}
 	}
@@ -139,7 +222,6 @@
 	.logo__image {
 		width: 50px;
 		height: 50px;
-		background-image: url(/logo.svg);
 	}
 	.logo__text {
 		font-weight: 700;
@@ -148,6 +230,7 @@
 }
 
 #main {
+	color: $lightText;
 	#startSection {
 		display: grid;
 		justify-items: center;
@@ -248,10 +331,16 @@
 				width: 80%;
 			}
 		}
+		@include breakpoint(large) {
+			& {
+				padding: 100px 5%;
+				grid-template-columns: auto auto;
+			}
+		}
 		@include breakpoint(xl) {
 			& {
 				padding: 100px calc(10% + 5vw);
-				grid-template-columns: auto auto;
+				// grid-template-columns: auto auto;
 			}
 			.startSection__title {
 				width: 100%;
@@ -300,6 +389,14 @@
 		padding: 30px 0;
 		grid-row-gap: 30px;
 		background: $accentColor;
+		* {
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
 		h2 {
 			font-size: 26px;
 			position: relative;
@@ -329,9 +426,9 @@
 			justify-items: left;
 			// align-items: center;
 			z-index: 2;
-			background: rgba(255, 255, 255, 0.8);
+			background: #ffffffcc;
 			padding: 15px 15px;
-			transition: all 0.4s;
+			transition: all 0.2s;
 			cursor: pointer;
 			&:hover {
 				background: #f4d8cd;
@@ -386,7 +483,7 @@
 			position: absolute;
 			bottom: 60px;
 			width: 98vw;
-			// max-width: 1800px;
+			max-width: 2200px;
 			left: 50%;
 			transform: translate(-50%, 0);
 			opacity: 0;
@@ -401,16 +498,6 @@
 				}
 			}
 			.card {
-				// width: 50%;
-				// grid-row-gap: 20px;
-				// .card__icon {
-				// 	width: 100px;
-				// 	height: 100px;
-				// 	& svg {
-				// 		height: 40px;
-				// 		max-width: 40px;
-				// 	}
-				// }
 				.card__title {
 					font-size: 22px;
 				}
@@ -421,6 +508,42 @@
 				.card__link {
 					font-size: 16px;
 				}
+			}
+		}
+		@include breakpoint(large) {
+			& {
+				grid-template-columns: 1fr 1fr 1fr;
+				grid-template-rows: 150px;
+				height: 60vh;
+				max-height: 600px;
+				min-height: 600px;
+				grid-row-gap: 0;
+				padding: 45px 0;
+			}
+			h2 {
+				// font-size: 54px;
+				grid-column: 1/4;
+				z-index: 2;
+				&::after {
+					// top: 100px;
+				}
+			}
+			.card {
+				grid-row: 2;
+				height: 320px;
+				grid-template-rows: 120px 1fr;
+				align-self: center;
+				// margin-bottom: 60px;
+				// width: 280px;
+			}
+			#backText {
+				opacity: 0;
+				visibility: hidden;
+			}
+			#backTextH {
+				opacity: 1;
+				visibility: visible;
+				top: 100px;
 			}
 		}
 		@include breakpoint(xl) {
@@ -448,11 +571,13 @@
 			#backTextH {
 				opacity: 1;
 				visibility: visible;
+				top: unset;
 			}
 			.card {
 				grid-row: 2;
 				height: 375px;
 				width: 280px;
+				grid-template-rows: 175px 1fr;
 				margin-bottom: 60px;
 				align-self: baseline;
 				.card__title {
@@ -467,6 +592,8 @@
 				}
 				.card__link {
 					font-size: 20px;
+					bottom: 30px;
+					right: 30px;
 				}
 			}
 			.card:nth-of-type(1) {
@@ -548,6 +675,14 @@
 	flex-direction: column;
 	justify-content: space-evenly;
 	align-items: center;
+	* {
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
 	#footer__text {
 		color: $lightText;
 		font-size: 12px;
@@ -595,6 +730,11 @@
 		.social__links {
 			justify-self: right;
 			grid-column-gap: 10px;
+		}
+	}
+	@include breakpoint(large) {
+		& {
+			padding: 0 5%;
 		}
 	}
 	@include breakpoint(xl) {
