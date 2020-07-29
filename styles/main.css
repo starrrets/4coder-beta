@@ -134,8 +134,10 @@
   color: #eeeeee;
 }
 
-#wrapper.dark #footer .logo {
-  border-right: 1px solid #eee;
+@media screen and (min-width: 600px) {
+  #wrapper.dark #footer .logo {
+    border-right: 1px solid #eee;
+  }
 }
 
 #wrapper.dark #footer #footer__text {

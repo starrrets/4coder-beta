@@ -93,8 +93,10 @@
 		#footer {
 			background: $dark;
 			color: $darkText;
-			.logo {
-				border-right: 1px solid #eee;
+			@include breakpoint(medium) {
+				.logo {
+					border-right: 1px solid #eee;
+				}
 			}
 			#footer__text {
 				color: #eee;
