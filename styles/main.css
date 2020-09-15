@@ -68,6 +68,7 @@
 
 #wrapper.dark #main {
   color: #eeeeee;
+  background: #121212;
 }
 
 #wrapper.dark #main #startSection .startSection__form {
@@ -106,6 +107,7 @@
 
 #wrapper.dark #main #featuresSection .card {
   background: #121212e6;
+  color: #eee;
 }
 
 #wrapper.dark #main #featuresSection .card .card__link {
@@ -114,7 +116,7 @@
 }
 
 #wrapper.dark #main #featuresSection .card:hover {
-  background: #000;
+  background: #814efa;
 }
 
 #wrapper.dark #footer {
@@ -137,7 +139,10 @@
 }
 
 #header {
-  background: #814efa;
+  background: #fff;
+  -webkit-box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
+          box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
+  z-index: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -172,13 +177,13 @@
 
 #header .links .link {
   font-size: 14px;
-  color: #fff;
+  color: #212121;
   text-decoration: none;
 }
 
 #header .links .link:hover {
   text-decoration: underline;
-  color: #01ebd0;
+  color: #814efa;
 }
 
 #header .links #toggle {
@@ -190,7 +195,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #ffffff;
+  background: #bcbcbc;
   width: 45px;
   height: 20px;
   border-radius: 20px;
@@ -238,7 +243,7 @@
 }
 
 #header .links #toggle.light #moon * {
-  fill: #212121;
+  fill: #fff;
 }
 
 #header .links #toggle.dark {
@@ -263,8 +268,8 @@
   border: none;
   outline: none;
   font-weight: 900;
-  color: #1f1f1f;
-  background: #fff;
+  color: #fff;
+  background: #814efa;
   border: none;
   width: 150px;
   height: 40px;
@@ -273,11 +278,11 @@
 }
 
 #header .header__btn:hover {
-  background-color: #ddd;
+  background-color: #9367fb;
 }
 
 #header .header__btn:active {
-  background-color: #d2d2d2;
+  background-color: #6f35f9;
 }
 
 @media screen and (min-width: 600px) {
@@ -313,12 +318,10 @@
 .logo {
   width: 150px;
   height: 50px;
-  background: url("../wide_logo.svg") no-repeat;
-  background-position: center center;
-  background-size: 130px;
 }
 
 #main {
+  background: #fcfcfc;
   color: #1f1f1f;
 }
 
@@ -390,7 +393,7 @@
 }
 
 #main #startSection .startSection__form #signUp__btn {
-  padding: 12px 32px;
+  padding: 10px 32px;
   border-radius: 10px;
   font-size: 14px;
   background: #01ebd0;
@@ -413,27 +416,36 @@
   height: 40px;
   padding: 0 10px;
   border-radius: 5px;
-  border: 2px solid rgba(1, 235, 208, 0.3);
+  background: rgba(255, 255, 255, 0.8);
+  color: #fff;
+  border: none;
+  border: 1px solid #fff;
 }
 
 #main #startSection .startSection__form .input:focus {
-  border-color: #01ebd0;
+  background: #fff;
+  border-color: #000;
 }
 
 #main #startSection .startSection__form .input::-webkit-input-placeholder {
-  color: #aaaaaa;
+  color: #000000;
 }
 
 #main #startSection .startSection__form .input:-ms-input-placeholder {
-  color: #aaaaaa;
+  color: #000000;
 }
 
 #main #startSection .startSection__form .input::-ms-input-placeholder {
-  color: #aaaaaa;
+  color: #000000;
 }
 
 #main #startSection .startSection__form .input::placeholder {
-  color: #aaaaaa;
+  color: #000000;
+}
+
+#main #startSection .startSection__form .input:required {
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 #main #startSection .startSection__form p {
@@ -565,7 +577,8 @@
   text-align: left;
   justify-items: left;
   z-index: 2;
-  background: #ffffffcc;
+  background: #ffffffb3;
+  color: #212121;
   padding: 15px 15px;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
@@ -573,17 +586,7 @@
 }
 
 #main #featuresSection .card:hover {
-  background: #814efa;
-  color: #fff;
-}
-
-#main #featuresSection .card:hover svg path {
-  fill: #fff;
-}
-
-#main #featuresSection .card:hover .card__link {
   background: #fff;
-  color: #814efa;
 }
 
 #main #featuresSection .card .card__block {
@@ -854,7 +857,9 @@
 }
 
 #footer {
-  background: #814efa;
+  background: #fff;
+  -webkit-box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
+          box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -879,7 +884,7 @@
 }
 
 #footer #footer__text {
-  color: #fff;
+  color: #212121;
   font-size: 12px;
 }
 
@@ -901,7 +906,7 @@
 
 #footer .social__links .link .link__icon {
   width: 22px;
-  fill: #fff;
+  fill: #212121;
 }
 
 #footer .social__links .link:hover .link__icon {
@@ -919,7 +924,8 @@
   }
   #footer .logo {
     width: 150px;
-    border-right: 1px solid #fff;
+    padding-right: 20px;
+    border-right: 1px solid #212121;
     background-position-x: left;
   }
   #footer #footer__text {

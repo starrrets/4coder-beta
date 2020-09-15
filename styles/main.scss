@@ -49,6 +49,7 @@
 		}
 		#main {
 			color: $darkText;
+			background: #121212;
 			#startSection {
 				.startSection__form {
 					background: $darkFormBackground;
@@ -70,12 +71,13 @@
 
 				.card {
 					background: #121212e6;
+					color: #eee;
 					.card__link {
 						background: #eee;
 						color: #121212;
 					}
 					&:hover {
-						background: #000;
+						background: $purple;
 					}
 				}
 			}
@@ -83,6 +85,7 @@
 		#footer {
 			background: $dark;
 			color: $darkText;
+
 			@include breakpoint(medium) {
 				.logo {
 					border-right: 1px solid #eee;
@@ -98,7 +101,9 @@
 	}
 }
 #header {
-	background: $purple;
+	background: #fff;
+	box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
+	z-index: 0;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -118,21 +123,19 @@
 		grid-template-columns: auto auto auto;
 		.link {
 			font-size: 14px;
-			color: #fff;
+			color: #212121;
 			text-decoration: none;
 		}
 		.link:hover {
 			text-decoration: underline;
-			color: $green;
+			color: $purple;
 		}
 		#toggle {
 			position: relative;
 			display: grid;
 			grid-template-columns: 1fr 1fr;
-			// justify-items: center;
 			align-items: center;
-			// place-items: center;
-			background: #ffffff;
+			background: #bcbcbc;
 
 			width: 45px;
 			height: 20px;
@@ -169,7 +172,7 @@
 					fill: $green;
 				}
 				#moon * {
-					fill: #212121;
+					fill: #fff;
 				}
 			}
 			&.dark {
@@ -191,18 +194,18 @@
 		border: none;
 		outline: none;
 		font-weight: 900;
-		color: #1f1f1f;
-		background: #fff;
+		color: #fff;
+		background: $purple;
 		border: none;
 		width: 150px;
 		height: 40px;
 		border-radius: 10px;
 		cursor: pointer;
 		&:hover {
-			background-color: #ddd;
+			background-color: lighten($color: $purple, $amount: 5);
 		}
 		&:active {
-			background-color: #d2d2d2;
+			background-color: darken($color: $purple, $amount: 5);
 		}
 	}
 	@include breakpoint(medium) {
@@ -230,12 +233,10 @@
 .logo {
 	width: 150px;
 	height: 50px;
-	background: url('../wide_logo.svg') no-repeat;
-	background-position: center center;
-	background-size: 130px;
 }
 
 #main {
+	background: #fcfcfc;
 	color: $lightText;
 	#startSection {
 		display: grid;
@@ -258,12 +259,6 @@
 			grid-row-gap: 15px;
 			width: 90%;
 			background: $purple;
-			// background: linear-gradient(
-			// 	11deg,
-			// 	rgba(255, 255, 255, 1) 0%,
-			// 	rgba(129, 78, 250, 1) 51%,
-			// 	rgba(1, 235, 208, 1) 100%
-			// );
 			border-radius: 10px;
 			padding: 20px 0;
 			h2 {
@@ -274,16 +269,12 @@
 				display: flex;
 				width: 80%;
 				justify-content: space-between;
-				// grid-template-columns: repeat(5, 40px);
-				// grid-column-gap: 15px;
 				.icon {
 					width: 40px;
 					height: 40px;
 					border-radius: 5px;
 					background: $green;
 					display: grid;
-					// justify-items: center;
-					// align-items: center;
 					place-items: center;
 					cursor: pointer;
 					&:hover {
@@ -296,9 +287,7 @@
 				}
 			}
 			#signUp__btn {
-				padding: 12px 32px;
-				// height: 40px;
-				// width: 180px;
+				padding: 10px 32px;
 				border-radius: 10px;
 				font-size: 14px;
 				background: $green;
@@ -318,14 +307,22 @@
 				height: 40px;
 				padding: 0 10px;
 				border-radius: 5px;
-				border: 2px solid transparentize($color: $green, $amount: 0.7);
+				background: rgba(255, 255, 255, 0.8);
+				color: #fff;
+				border: none;
+				border: 1px solid #fff;
 				&:focus {
-					border-color: $green;
+					background: #fff;
+					border-color: #000;
 				}
 				&::placeholder {
-					color: #aaaaaa;
+					color: #000000;
+				}
+				&:required {
+					box-shadow: none;
 				}
 			}
+
 			p {
 				width: 80%;
 				font-size: 12px;
@@ -364,7 +361,6 @@
 		@include breakpoint(xl) {
 			& {
 				padding: 100px calc(10% + 5vw);
-				// grid-template-columns: auto auto;
 			}
 			.startSection__title {
 				width: 100%;
@@ -393,7 +389,6 @@
 					}
 				}
 				#signUp__btn {
-					// height: 50px;
 					font-size: 16px;
 				}
 				.input {
@@ -412,16 +407,6 @@
 		padding: 30px 0;
 		grid-row-gap: 30px;
 		background-color: $green;
-		// background-image: url('/section.svg');
-		// background-repeat: no-repeat;
-		// background-position: center center;
-		// background-size: cover;
-		// background: linear-gradient(
-		// 	11deg,
-		// 	rgba(255, 255, 255, 1) 0%,
-		// 	rgba(129, 78, 250, 1) 51%,
-		// 	rgba(1, 235, 208, 1) 100%
-		// );
 		* {
 			-webkit-touch-callout: none;
 			-webkit-user-select: none;
@@ -457,20 +442,13 @@
 			text-align: left;
 			justify-items: left;
 			z-index: 2;
-			background: #ffffffcc;
+			background: #ffffffb3;
+			color: #212121;
 			padding: 15px 15px;
 			transition: all 0.2s;
 			cursor: pointer;
 			&:hover {
-				background: $purple;
-				color: #fff;
-				& svg path {
-					fill: #fff;
-				}
-				& .card__link {
-					background: #fff;
-					color: $purple;
-				}
+				background: #fff;
 			}
 			.card__block {
 				grid-row: 2;
@@ -561,20 +539,14 @@
 				padding: 45px 0;
 			}
 			h2 {
-				// font-size: 54px;
 				grid-column: 1/4;
 				z-index: 2;
-				&::after {
-					// top: 100px;
-				}
 			}
 			.card {
 				grid-row: 2;
 				height: 320px;
 				grid-template-rows: 120px 1fr;
 				align-self: center;
-				// margin-bottom: 60px;
-				// width: 280px;
 			}
 			#backText {
 				opacity: 0;
@@ -648,8 +620,6 @@
 		padding: 30px 0;
 		display: grid;
 		text-align: center;
-		// justify-items: center;
-		// align-items: center;
 		place-items: center;
 		grid-row-gap: 20px;
 		.ctaSection__title {
@@ -711,7 +681,8 @@
 }
 
 #footer {
-	background: $purple;
+	background: #fff;
+	box-shadow: 0px 0px 8px rgba(10, 10, 10, 0.05);
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
@@ -725,7 +696,7 @@
 		user-select: none;
 	}
 	#footer__text {
-		color: #fff;
+		color: #212121;
 		font-size: 12px;
 	}
 	.social__links {
@@ -735,14 +706,12 @@
 
 		.link {
 			display: grid;
-			// justify-items: center;
-			// align-items: center;
 			place-items: center;
 			width: 40px;
 			height: 40px;
 			.link__icon {
 				width: 22px;
-				fill: #fff;
+				fill: #212121;
 			}
 			&:hover {
 				.link__icon {
@@ -761,9 +730,10 @@
 
 		.logo {
 			width: 150px;
-			border-right: 1px solid #fff;
+			padding-right: 20px;
+
+			border-right: 1px solid #212121;
 			background-position-x: left;
-			// padding-right: 20px;
 		}
 		#footer__text {
 			justify-self: right;
