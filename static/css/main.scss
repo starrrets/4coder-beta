@@ -40,10 +40,10 @@
 				background: $purple;
 				color: #fff;
 				&:hover {
-					background-color: lighten($color: $dark, $amount: 5);
+					background-color: lighten($color: $purple, $amount: 5);
 				}
 				&:active {
-					background-color: #121212;
+					background-color: darken($color: $purple, $amount: 5);
 				}
 			}
 		}

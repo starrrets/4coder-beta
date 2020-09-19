@@ -1,0 +1,179 @@
+:focus {
+  outline: none;
+}
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+::-moz-selection {
+  background: #01ebd0;
+  color: #fff;
+}
+
+::selection {
+  background: #01ebd0;
+  color: #fff;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    -ms-grid-columns: 60px 1fr;
+        grid-template-columns: 60px 1fr;
+  }
+}
+
+#wrapper {
+  width: 100%;
+  height: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 50px 1fr 150px;
+      grid-template-rows: 50px 1fr 150px;
+}
+
+@media screen and (min-width: 600px) {
+  #wrapper {
+    -ms-grid-rows: 50px 1fr 100px;
+        grid-template-rows: 50px 1fr 100px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  #wrapper {
+    -ms-grid-rows: 90px 1fr 150px;
+        grid-template-rows: 90px 1fr 150px;
+    -ms-grid-column: 2;
+    grid-column: 2;
+  }
+}
+
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  #sidebar {
+    width: 60px;
+    height: 100vh;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-rows: 65px (30px)[7] 1fr;
+        grid-template-rows: 65px repeat(7, 30px) 1fr;
+    row-gap: 30px;
+    place-items: center;
+    background: #f5f5f5;
+  }
+}
+
+#sidebar #logo {
+  width: 45px;
+  height: 45px;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  background-image: url("../../favicon.svg");
+}
+
+#sidebar #toggle {
+  position: relative;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #bcbcbc;
+  width: 45px;
+  height: 20px;
+  border-radius: 20px;
+  -ms-grid-column-align: center;
+      justify-self: center;
+  cursor: pointer;
+}
+
+#sidebar #toggle svg {
+  z-index: 1;
+}
+
+#sidebar #toggle #sun {
+  margin-left: 3px;
+}
+
+#sidebar #toggle #moon {
+  -ms-grid-column-align: right;
+      justify-self: right;
+  margin-right: 3px;
+}
+
+#sidebar #toggle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #1f1f1f;
+  z-index: 0;
+}
+
+#sidebar #toggle.light::after {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+#sidebar #toggle.light #sun * {
+  fill: #01ebd0;
+}
+
+#sidebar #toggle.light #moon * {
+  fill: #fff;
+}
+
+#sidebar #toggle.dark {
+  background: #01ebd0;
+}
+
+#sidebar #toggle.dark #sun * {
+  fill: #212121;
+}
+
+#sidebar #toggle.dark #moon * {
+  fill: #fff;
+}
+
+#sidebar #toggle.dark::after {
+  background: #814efa;
+  -webkit-transform: translateX(25px);
+          transform: translateX(25px);
+}
+
+#sidebar path {
+  fill: #808080;
+}
+
+#sidebar .current path {
+  fill: #814efa;
+}
+
+#sidebar .sidebar__link:hover path,
+#sidebar #sidebar__search:hover path {
+  fill: #01ebd0;
+}
+
+#sidebar #sidebar__search {
+  cursor: pointer;
+}
+/*# sourceMappingURL=secondary.css.map */

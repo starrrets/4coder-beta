@@ -59,11 +59,11 @@
 }
 
 #wrapper.dark #header .header__btn:hover {
-  background-color: #2c2c2c;
+  background-color: #9367fb;
 }
 
 #wrapper.dark #header .header__btn:active {
-  background-color: #121212;
+  background-color: #6f35f9;
 }
 
 #wrapper.dark #main {
