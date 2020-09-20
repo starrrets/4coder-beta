@@ -27,8 +27,61 @@
 	@include breakpoint(large) {
 		grid-template-rows: 80px 1fr 150px;
 	}
+	.st0 {
+		fill: #01ebd0;
+	}
+	.st1 {
+		fill: #212121;
+	}
+	.st2 {
+		fill: url(#SVGID_1_);
+	}
+
+	.st3 {
+		fill: url(#SVGID_2_);
+	}
+
+	.st4 {
+		fill: url(#SVGID_3_);
+	}
+
+	.st5 {
+		fill: url(#SVGID_4_);
+	}
+
+	.st6 {
+		opacity: 0.64;
+		fill: #00a99d;
+		enable-background: new;
+	}
+
+	.st7 {
+		fill: url(#SVGID_5_);
+	}
+
+	.st8 {
+		fill: url(#SVGID_6_);
+	}
+
+	.st9 {
+		fill: url(#SVGID_7_);
+	}
+
+	.st10 {
+		fill: url(#SVGID_8_);
+	}
+	#backTextH path {
+		fill: #ffffff26;
+	}
 	&.dark {
 		background: #121212;
+		.st1 {
+			fill: #ffffff;
+		}
+		#backTextH path {
+			fill: #ffffff1a;
+		}
+
 		#header {
 			background: $dark;
 			color: $darkText;
@@ -76,6 +129,9 @@
 						background: #eee;
 						color: #121212;
 					}
+					.card__icon path {
+						fill: #eee;
+					}
 					&:hover {
 						background: $purple;
 					}
@@ -96,6 +152,9 @@
 			}
 			.link:hover .link__icon path {
 				fill: $green;
+			}
+			.link .link__icon path {
+				fill: #eee;
 			}
 		}
 	}
@@ -464,6 +523,9 @@
 					height: 30px;
 					max-width: 30px;
 				}
+				& path {
+					fill: #1f1f1f;
+				}
 			}
 			.card__title {
 				font-weight: 900;
@@ -712,7 +774,9 @@
 			height: 40px;
 			.link__icon {
 				width: 22px;
-				fill: #212121;
+				& path {
+					fill: #212121;
+				}
 			}
 			&:hover {
 				.link__icon {
