@@ -70,7 +70,8 @@
 	.st10 {
 		fill: url(#SVGID_8_);
 	}
-	#backTextH path {
+	#backTextH path,
+	#backText path {
 		fill: #ffffff26;
 	}
 	&.dark {
@@ -78,7 +79,8 @@
 		.st1 {
 			fill: #ffffff;
 		}
-		#backTextH path {
+		#backTextH path,
+		#backText path {
 			fill: #ffffff1a;
 		}
 
