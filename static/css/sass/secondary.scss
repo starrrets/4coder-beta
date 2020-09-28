@@ -121,6 +121,27 @@ body {
 				}
 			}
 		}
+		#main {
+			.education-card {
+				background: #1f1f1f;
+				&::after {
+					color: #212121;
+					background: #eee;
+				}
+				.education-card__title {
+					color: #eee;
+				}
+				&:hover {
+					&::after {
+						color: #eee;
+						background: $purple;
+					}
+					.education-card__title {
+						color: $purple;
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -281,21 +302,34 @@ body {
 #main {
 	display: grid;
 	place-items: center;
-	grid-template-rows: 380px;
+	grid-template-rows: 330px;
 	margin: 15px 0;
-	.education-card {
+	&.list {
+		grid-template-columns: 1fr;
+		grid-template-rows: 40px 1fr;
+		row-gap: 15px;
+	}
+	#main__title {
+		font-size: 30px;
+	}
+	#main__list {
 		width: 90%;
-		height: 350px;
-		background-color: #fff;
-		border-radius: 30px;
-		// margin: 20px 0;
+		align-self: baseline;
 		display: grid;
-		grid-template-rows: 1fr 100px;
+		row-gap: 10px;
+	}
+	.education-card {
+		text-decoration: none;
+		width: 90%;
+		height: 300px;
+		background-color: #121212;
+		border-radius: 30px;
+		display: grid;
+		grid-template-rows: 1fr 80px;
 		place-items: center;
 		cursor: pointer;
-		// box-shadow: 0px 0px 20px -2px #814efa1a;
 		.education-card__title {
-			color: #212121;
+			color: #eeeeee;
 			justify-self: left;
 			font-size: 40px;
 			font-family: 'Ubuntu';
@@ -318,8 +352,8 @@ body {
 			content: '->';
 			width: 40px;
 			height: 40px;
-			background: #212121;
-			color: #fff;
+			background: #eeeeee;
+			color: #212121;
 			display: grid;
 			place-items: center;
 			border-radius: 50%;
@@ -332,16 +366,24 @@ body {
 		&:hover {
 			&::after {
 				background: $purple;
+				color: #fff;
 			}
 			.education-card__title {
 				color: $purple;
 			}
 		}
-		&#python {
-			.education-card__image {
-				background-image: url('../img/python.webp');
-			}
+		&#python .education-card__image {
+			background-image: url('../img/python.jpg');
 		}
+	}
+	@include breakpoint(medium) {
+		grid-template-columns: 1fr 1fr;
+	}
+	@include breakpoint(large) {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+	@include breakpoint(xl) {
+		grid-template-columns: repeat(4, 1fr);
 	}
 }
 
