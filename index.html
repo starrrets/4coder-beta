@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap"
         rel="stylesheet">
     <link rel="shortcut icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="./static/css/main.min.css">
@@ -14,7 +14,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Rubik', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
     </style>
@@ -275,7 +275,7 @@
                     </div>
                     <div class="card__link">></div>
                 </a>
-                <a href="/" class="card">
+                <a href="/tasks/" class="card">
                     <div class="card__title">Задачи</div>
                     <div class="card__block">
                         <div class="card__icon"><svg viewBox="0 0 30 27" fill="none"
@@ -291,7 +291,7 @@
                     </div>
                     <div class="card__link">></div>
                 </a>
-                <a href="/" class="card">
+                <a href="/tests/" class="card">
                     <div class="card__title">Тесты</div>
                     <div class="card__block">
                         <div class="card__icon"><svg width="100" height="100"
@@ -309,7 +309,7 @@
                             adipiscing elit, sed do eiusmod</div>
                     </div>
                     <div class="card__link">></div>
-                </a><a href="/" class="card">
+                </a><a href="/blog/" class="card">
                     <div class="card__title">Блог</div>
                     <div class="card__block">
                         <div class="card__icon"><svg width="100" height="90"
@@ -509,6 +509,15 @@
         </footer>
     </div>
     <script src="./static/js/theme.js"></script>
+    <script>
+        let elems = document.getElementsByClassName("icon");
+        console.log(elems)
+        for (let i = 0; i < elems.length; i++) {
+            elems[i].onclick = function () {
+                alert('Данная функция в разработке');
+            };
+        }
+    </script>
 </body>
 
 </html>
