@@ -132,29 +132,40 @@ body {
 			p {
 				z-index: 1;
 			}
+			// #main__title__green_circle {
+			// 	width: 200px;
+			// 	position: absolute;
+			// 	z-index: 0;
+			// 	bottom: 0;
+			// 	right: 0;
+			// 	transform: translateX(200px);
+			// }
 			&::before,
 			&::after {
 				content: ' ';
 				position: absolute;
-				width: 250px;
-				height: 250px;
+				width: 200px;
+				height: 200px;
 				border-radius: 50%;
 			}
-			// &::before {
-			// 	bottom: 0;
-			// 	right: 0;
-			// 	transform: translateX(40%);
-			// 	background: radial-gradient(
-			// 		circle,
-			// 		hsla(173, 99%, 46%, 0.402) 0%,
-			// 		#f9f9f9 70%
-			// 	);
-			// }
+			&::before {
+				bottom: 0;
+				right: 0;
+				background: radial-gradient(
+					56.63% 48.52% at 50% 50%,
+					#01ebd066 0%,
+					#01ebd000 87.5%
+				);
+			}
 			&::after {
 				top: 0;
 				left: 0;
-				transform: translate(-50%, 5%);
-				background: radial-gradient(circle, #814efa80 0%, #f9f9f9 70%);
+				transform: translateX(-30%);
+				background: radial-gradient(
+					56.63% 48.52% at 50% 50%,
+					#804cfa66 0%,
+					#804cfa00 87.5%
+				);
 			}
 		}
 		#registration {

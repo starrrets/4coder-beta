@@ -1,5 +1,5 @@
-const form = document.querySelector('.startSection__form')
-const submit = window.signUp__btn;
+const form = document.querySelector('form')
+const submit = window.auth_button;
 
 const pattern = /(?=^.{8,}$)(?=.*[а-яА-ЯёЁa-zA-Z])(?=.*[0-9])/g;
 const validate = () => {
