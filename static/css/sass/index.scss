@@ -140,16 +140,16 @@ body {
 				height: 250px;
 				border-radius: 50%;
 			}
-			&::before {
-				bottom: 0;
-				right: 0;
-				transform: translateX(40%);
-				background: radial-gradient(
-					circle,
-					hsla(173, 99%, 46%, 0.402) 0%,
-					#f9f9f9 70%
-				);
-			}
+			// &::before {
+			// 	bottom: 0;
+			// 	right: 0;
+			// 	transform: translateX(40%);
+			// 	background: radial-gradient(
+			// 		circle,
+			// 		hsla(173, 99%, 46%, 0.402) 0%,
+			// 		#f9f9f9 70%
+			// 	);
+			// }
 			&::after {
 				top: 0;
 				left: 0;
