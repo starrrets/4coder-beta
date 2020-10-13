@@ -173,7 +173,7 @@ code[class*='language-javascript'] {
 .dark .token.prolog,
 .dark .token.doctype,
 .dark .token.cdata {
-	color: #6a9955;
+	color: #01b8a3;
 }
 
 .dark .token.punctuation {
@@ -187,7 +187,7 @@ code[class*='language-javascript'] {
 .dark .token.constant,
 .dark .token.symbol,
 .dark .token.deleted {
-	color: #b5cea8;
+	color: lighten(#ff00ff, 20);
 }
 
 .dark .token.selector,
@@ -196,7 +196,7 @@ code[class*='language-javascript'] {
 .dark .token.char,
 .dark .token.builtin,
 .dark .token.inserted {
-	color: #ce9178;
+	color: lighten(#ff4655, 5);
 }
 
 .dark .token.operator,
@@ -210,7 +210,7 @@ code[class*='language-javascript'] {
 .dark .token.atrule,
 .dark .token.attr-value,
 .dark .token.keyword {
-	color: #c586c0;
+	color: lighten(#5e1cf9, 20);
 }
 
 .dark .token.function {

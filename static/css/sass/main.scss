@@ -20,9 +20,9 @@
 	width: 100%;
 	height: 100%;
 	display: grid;
-	grid-template-rows: 200px 1fr 200px;
+	grid-template-rows: 150px 1fr 200px;
 	@include breakpoint(medium) {
-		grid-template-rows: 200px 1fr 150px;
+		grid-template-rows: 150px 1fr 150px;
 	}
 	@include breakpoint(large) {
 		grid-template-rows: 80px 1fr 150px;
@@ -180,9 +180,9 @@
 	}
 	.links {
 		display: grid;
-		grid-column-gap: 30px;
-		grid-row-gap: 10px;
-		grid-template-columns: auto auto auto;
+		place-items: center;
+		column-gap: 30px;
+		grid-template-columns: repeat(4, auto);
 		.link {
 			font-size: 14px;
 			color: #212121;
@@ -195,60 +195,21 @@
 		#toggle {
 			position: relative;
 			display: grid;
-			grid-template-columns: 1fr 1fr;
-			align-items: center;
-			background: #bcbcbc;
+			place-items: center;
 
-			width: 45px;
-			height: 20px;
-			border-radius: 20px;
-			grid-column: 1/4;
-			justify-self: center;
+			width: 24px;
+			height: 24px;
 			cursor: pointer;
 			& svg {
 				z-index: 1;
 			}
-			& #sun {
-				margin-left: 3px;
+
+			&.light #moon path {
+				fill: #3b3b3b;
 			}
-			& #moon {
-				justify-self: right;
-				margin-right: 3px;
-			}
-			&::after {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 20px;
-				height: 20px;
-				border-radius: 50%;
-				background: #1f1f1f;
-				z-index: 0;
-			}
-			&.light::after {
-				transform: translateX(0);
-			}
-			&.light {
-				#sun * {
-					fill: $green;
-				}
-				#moon * {
-					fill: #fff;
-				}
-			}
-			&.dark {
-				background: $green;
-				#sun * {
-					fill: #212121;
-				}
-				#moon * {
-					fill: #fff;
-				}
-			}
-			&.dark::after {
-				background: $purple;
-				transform: translateX(25px);
+
+			&.dark #moon path {
+				fill: #fff;
 			}
 		}
 	}
@@ -289,6 +250,13 @@
 	@include breakpoint(xl) {
 		& {
 			padding: 0 calc(10% + 5vw);
+			display: grid;
+			grid-template-columns: 0.55fr 0.38fr;
+		}
+		.links {
+			width: max-content;
+			column-gap: 35px;
+			justify-self: center;
 		}
 	}
 }
@@ -300,6 +268,57 @@
 #main {
 	background: #f9f9f9;
 	color: $lightText;
+	.alert {
+		position: fixed;
+		display: grid;
+		opacity: 0;
+		visibility: hidden;
+		row-gap: 15px;
+		place-items: center;
+		width: 95%;
+		background: #ee4266;
+		border-radius: 10px;
+		z-index: 100;
+		bottom: 2%;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 15px 0;
+		#alert__title {
+			color: #fff;
+			text-align: center;
+		}
+		#alert__btn {
+			background: lighten($color: #ee4266, $amount: 10);
+			color: #212121;
+			width: 100px;
+			padding: 5px 0;
+			border-radius: 7px;
+			outline: none;
+			border: none;
+			cursor: pointer;
+			font-size: 16px;
+			&:hover {
+				background: lighten($color: #ee4266, $amount: 15);
+			}
+		}
+		@include breakpoint(large) {
+			top: 20%;
+			bottom: unset;
+			width: fit-content;
+			padding: 15px 30px;
+		}
+	}
+	#page__block {
+		position: fixed;
+		opacity: 0;
+		visibility: hidden;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: #000000cc;
+		z-index: 99;
+	}
 	#startSection {
 		display: grid;
 		justify-items: center;
@@ -324,7 +343,7 @@
 			border-radius: 10px;
 			padding: 20px 0;
 			h2 {
-				font-size: 24px;
+				font-size: 20px;
 				color: #fff;
 			}
 			.socialRegistration {
@@ -409,8 +428,8 @@
 			}
 			.startSection__form {
 				width: 80%;
-				.socialRegistration {
-					// width: 350px;
+				h2 {
+					font-size: 22px;
 				}
 			}
 		}
@@ -442,7 +461,9 @@
 			.startSection__form {
 				width: 390px;
 				height: 500px;
-
+				h2 {
+					font-size: 24px;
+				}
 				.socialRegistration {
 					width: 330px;
 					.icon {

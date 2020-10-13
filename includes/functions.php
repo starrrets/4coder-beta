@@ -3,8 +3,7 @@ function get_article_list($link, $table)
 {
     $sql = "SELECT * FROM $table";
     $result = mysqli_query($link, $sql);
-    $list = mysqli_fetch_all($result);
-    return $list;
+    return mysqli_fetch_all($result);
 }
 
 function print_articles_list($list)
@@ -15,7 +14,7 @@ function print_articles_list($list)
     $k = 1;
     for ($i = 0; $i < sizeof($list);) {
         if ($title == $list[$i][1]) {
-            echo '<div class="main__list__article"><span class="main__list__article__id">' . $k . '.' . $j . ' ' . '</span><a href="./article.php?id=' . $i . '"class="main__list__article__link">' . $list[$i][2] . '</a></div>';
+            echo '<div class="main__list__article"><span class="main__list__article__id">' . $k . '.' . $j . ' ' . '</span><a href="./article.php?id=' . $i . '" class="main__list__article__link">' . $list[$i][2] . '</a></div>';
             $i++;
             $j++;
         } else {

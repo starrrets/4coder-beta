@@ -1,4 +1,5 @@
 <?php
+$user = json_decode($_COOKIE['user'], true);
 require_once '../includes/db.php';
 require_once '../includes/functions.php';
 ?>
@@ -26,12 +27,7 @@ require_once '../includes/functions.php';
 <body>
     <div id="wrapper" class="light">
         <aside id="sidebar">
-            <a href="/" class="sidebar__link">
-                <svg viewBox="0 0 30 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M6.73371 11.0193L15 2.75299L23.2663 11.0193H23.2646V24.7934H6.73567V11.0193H6.73371ZM3.98085 13.7721L1.94655 15.8064L0 13.8599L13.0537 0.806184C14.1286 -0.268728 15.8714 -0.268728 16.9463 0.806184L30 13.8599L28.0534 15.8064L26.0194 13.7724V24.7934C26.0194 26.3148 24.786 27.5482 23.2646 27.5482H6.73567C5.21423 27.5482 3.98085 26.3148 3.98085 24.7934V13.7721Z" />
-                </svg>
-                <p class="sidebar__link__name">Главная</p>
-            </a>
+
             <a href="/education/" class="sidebar__link current">
                 <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 3V4L11 8L20 4V3L9 0L0 3Z" />
@@ -186,11 +182,7 @@ require_once '../includes/functions.php';
                     <path d="M12.1168 11.8832C8.90454 8.66977 8.11814 3.95138 9.75274 0C7.48078 0.448332 5.31061 1.5522 3.54879 3.31402C-1.18293 8.04574 -1.18293 15.7183 3.54879 20.45C8.28172 25.1829 15.953 25.1817 20.686 20.45C22.4478 18.6882 23.5505 16.5192 24 14.2473C20.0474 15.8806 15.329 15.0955 12.1168 11.8832Z" fill="#606060" />
                 </svg>
             </div>
-            <a href="/profile/" id="header__avatar">
-                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16 0C7.3264 0 0 7.3264 0 16C0 24.6736 7.3264 32 16 32C24.6736 32 32 24.6736 32 16C32 7.3264 24.6736 0 16 0ZM16 8C18.7632 8 20.8 10.0352 20.8 12.8C20.8 15.5648 18.7632 17.6 16 17.6C13.2384 17.6 11.2 15.5648 11.2 12.8C11.2 10.0352 13.2384 8 16 8ZM7.8304 23.6352C9.2656 21.5232 11.6592 20.1152 14.4 20.1152H17.6C20.3424 20.1152 22.7344 21.5232 24.1696 23.6352C22.1248 25.824 19.224 27.2 16 27.2C12.776 27.2 9.8752 25.824 7.8304 23.6352Z" fill="#606060" />
-                </svg>
-            </a>
+            <?php echo "<a href='/profile/' id='header__avatar' style='background-image: url(\"" . $user['avatar'] . "\");background-size:cover;'></a>"; ?>
         </header>
         <main id="main" class="list">
             <h1 id="main__title">Python</h1>

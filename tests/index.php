@@ -1,13 +1,5 @@
 <?php
 $user = json_decode($_COOKIE['user'], true);
-require_once '../includes/db.php';
-require_once '../includes/functions.php';
-$list = get_article_list($link, 'python');
-$id = $_GET['id'];
-$list_size = sizeof($list) - 1;
-if ($id > $list_size || $id < 0) {
-    header('HTTP/1.1 404 Not Found', true, 404);
-}
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -18,14 +10,13 @@ if ($id > $list_size || $id < 0) {
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
-    <link rel="stylesheet" href="../static/css/prism.min.css">
-    <title>Обучение - 4coder</title>
+    <title>Тесты - 4coder</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Rubik', sans-serif;
+            font-family: 'Roboto', sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
     </style>
@@ -35,7 +26,7 @@ if ($id > $list_size || $id < 0) {
     <div id="wrapper" class="light">
         <aside id="sidebar">
 
-            <a href="/education/" class="sidebar__link current">
+            <a href="/education/" class="sidebar__link">
                 <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 3V4L11 8L20 4V3L9 0L0 3Z" />
                     <path d="M2 7V11V11.267C2 12.888 6.001 15.16 11 15.001C15 14.875 17.586 13.029 18 11.534C18.024 11.445 18.037 11.356 18.037 11.266V11V7L11 10L6 8.333V11.546L5 11.182V8L2 7Z" />
@@ -49,7 +40,7 @@ if ($id > $list_size || $id < 0) {
                 </svg>
                 <p class="sidebar__link__name">Задачи</p>
             </a>
-            <a href="/tests" class="sidebar__link">
+            <a href="/tests" class="sidebar__link current">
                 <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13.2215 17.5317L9.51145 13.8217L7.15479 16.1784L13.4448 22.4684L22.9481 11.0684L20.3848 8.9317L13.2215 17.5317Z" />
                     <path d="M26.6667 0H3.33333C1.495 0 0 1.495 0 3.33333V26.6667C0 28.505 1.495 30 3.33333 30H26.6667C28.505 30 30 28.505 30 26.6667V3.33333C30 1.495 28.505 0 26.6667 0ZM3.33333 26.6667V3.33333H26.6667L26.67 26.6667H3.33333Z" />
@@ -191,22 +182,11 @@ if ($id > $list_size || $id < 0) {
             </div>
             <?php echo "<a href='/profile/' id='header__avatar' style='background-image: url(\"" . $user['avatar'] . "\");background-size:cover;'></a>"; ?>
         </header>
-        <main id="main" class="article">
-            <?php print__article($list, $id);
-            ?>
+        <main id="main">
         </main>
     </div>
     <script src="../static/js/theme.js"></script>
     <script src="../static/js/menu.js"></script>
-    <script src="../static/js/prism.js"></script>
-    <script>
-        const backBtn = window.error__button;
-        if (backBtn) {
-            backBtn.onclick = () => {
-                window.history.back();
-            }
-        }
-    </script>
 </body>
 
 </html>

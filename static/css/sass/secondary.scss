@@ -41,13 +41,13 @@ input[type='search']::-webkit-search-results-decoration {
 	display: none;
 }
 body {
+	background: #000;
 	width: 100%;
 	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr;
 }
 #wrapper {
-	background: #f9f9f9;
 	width: 100%;
 	// height: 100%;
 	min-height: calc(100vh - 60px);
@@ -72,6 +72,9 @@ body {
 			opacity: 1;
 			visibility: visible;
 		}
+	}
+	&.light {
+		background: #f9f9f9;
 	}
 	&.dark {
 		background: #181818;
@@ -704,6 +707,7 @@ body {
 	row-gap: 5px;
 	align-items: center;
 	background: #fff;
+	overflow-x: hidden;
 	justify-items: left;
 	&.open {
 		transform: translateX(0);
