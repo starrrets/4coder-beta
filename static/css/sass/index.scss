@@ -101,6 +101,7 @@ body {
 		grid-template-rows: 0.3fr max-content;
 		row-gap: 30px;
 		padding: 20px 0;
+		overflow-x: hidden;
 		// &:after {
 		// 	content: ' ';
 		// 	position: fixed;
