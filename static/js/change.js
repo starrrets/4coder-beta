@@ -27,13 +27,15 @@ const hideForm = (form) => {
 	form.style.visibility = 'hidden';
 };
 const showPageBlock = () => {
-	pageBlock.style.opacity = '1';
-	pageBlock.style.visibility = 'visible';
+	window['page__block'].style.opacity = '1';
+	window['page__block'].style.visibility = 'visible';
+	body.style = 'overflow-y:hidden;';
 };
 
 const hidePageBlock = () => {
-	pageBlock.style.opacity = '0';
-	pageBlock.style.visibility = 'hidden';
+	window['page__block'].style.opacity = '0';
+	window['page__block'].style.visibility = 'hidden';
+	body.style = '';
 };
 changeButton.onclick = () => {
 	showPageBlock();
@@ -86,8 +88,8 @@ if (addPasswordButton) {
 }
 
 deleteAvatar.onclick = () => {
-	let defaultAvatar = '../static/img/user.webp';
-	window['current-avatar'].style = 'background-image:url("../static/img/user.webp")';
+	let defaultAvatar = 'https://avatars.dicebear.com/4.5/api/identicon/'+oldUsername+'.svg?&background=%23ffffff';
+	window['current-avatar'].style = 'background-image:url('+defaultAvatar+')';
 	window['avatar'].value = defaultAvatar;
 	return false;
 };

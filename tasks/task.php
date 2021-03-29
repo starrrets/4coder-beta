@@ -5,18 +5,25 @@ if (!$_GET['lang'] || !isset($_GET['tId'])) {
 }
 require_once '../include/db.php';
 require_once '../include/functions.php';
+if (!isLanguageExist($link, 'tasks', $_GET['lang'])) {
+    header('Location: /tasks/');
+}
 $user = '';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
 }
-$list = get_tt_list($link, 'tasks', $_GET['lang']);
+
+if ($_GET['tId'] < 0) {
+    header('Location: /tasks/list.php?lang=' . $_GET['lang']);
+}
+$task = get_tt_item($link, 'tasks', $_GET['lang'], $_GET['tId']);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -25,7 +32,7 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -47,12 +54,12 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <link rel="stylesheet" href="../static/css/prism.min.css">
-    <title><?php echo $list[$_GET['tId']][3]; ?> - coderley</title>
-    <meta name="description" content="<?php echo $list[$_GET['tId']][3]; ?> - coderley">
+    <title><?php echo $task['subtopic']; ?> - coderley</title>
+    <meta name="description" content="<?php echo $task['subtopic']; ?> - coderley">
     <style>
         * {
             margin: 0;
@@ -75,18 +82,31 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
         <main id="main" class="task">
             <a href="/tasks/list.php?lang=<?php echo $_GET['lang'] ?>" id="back">
                 &lt;- назад</a>
-            <h2 class="task__title"><?php echo $list[$_GET['tId']][3]; ?></h2>
+            <h2 class="task__title"><?php echo $task['subtopic']; ?></h2>
 
             <div class="task__problem">
                 <h3>Условие:</h3>
-                <?php echo $list[$_GET['tId']][4]; ?>
+                <?php echo $task['task']; ?>
             </div>
             <div class="task__solution">
                 <button class="task__solution__toggle">Показать решение</button>
                 <div class="task__solution__content">
-                    <?php echo $list[$_GET['tId']][5]; ?>
+                    <?php echo $task['solution']; ?>
+
                 </div>
             </div>
+            <div class="disqus_wrapper">
+                <div id="disqus_thread"></div>
+            </div>
+            <script>
+                (function() {
+                    var d = document,
+                        s = d.createElement('script');
+                    s.src = 'https://coderley.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
         </main>
     </div>
     <script src="../static/js/theme.js"></script>

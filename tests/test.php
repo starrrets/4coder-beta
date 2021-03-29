@@ -2,7 +2,7 @@
 session_start();
 if (!$_GET['lang'] || !isset($_GET['tId'])) {
     header('Location: /tests/');
-} elseif ($_COOKIE['test-' . $_GET['tId']]) {
+} elseif ($_COOKIE['test-' . $_GET['lang'] . '-' . $_GET['tId']]) {
     header('Location: /tests/list.php?lang=' . $_GET['lang']);
 }
 require_once '../include/db.php';
@@ -11,15 +11,24 @@ $user = '';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
 }
-$list = get_tt_list($link, 'tests', $_GET['lang']);
-$test = $list[$_GET['tId']];
+if (!isLanguageExist($link, 'tests', $_GET['lang'])) {
+    header('Location: /tasks/');
+}
+$user = '';
+if ($_COOKIE['user']) {
+    $user = json_decode($_COOKIE['user'], true);
+}
+if ($_GET['tId'] < 0) {
+    header('Location: /tests/list.php?lang=' . $_GET['lang']);
+}
+$test = get_tt_item($link, 'tests', $testLang, $_GET['tId']);
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -28,7 +37,7 @@ $test = $list[$_GET['tId']];
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -50,11 +59,11 @@ $test = $list[$_GET['tId']];
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
-    <title><?php echo $test[3]; ?> - coderley</title>
-    <meta name="description" content="<?php echo $test[3]; ?> - coderley">
+    <title><?php echo $test['subtopic']; ?> - coderley</title>
+    <meta name="description" content="<?php echo $test['subtopic']; ?> - coderley">
     <style>
         * {
             margin: 0;
@@ -79,8 +88,8 @@ $test = $list[$_GET['tId']];
             <div id="test-question__text"></div>
             <div id="test-question__answers"></div>
             <div id="test-controls">
-                <div id="timer"><span id="timer_minutes"><?php echo $test[4]; ?></span> : <span id="timer_seconds">00</span></div>
-                <div class="progress"><span id="progress-current">1</span> / <span id="progress-total"><?php echo sizeof(json_decode($test[5])); ?></span></div>
+                <div id="timer"><span id="timer_minutes"><?php echo $test['timer']; ?></span> : <span id="timer_seconds">00</span></div>
+                <div class="progress"><span id="progress-current">1</span> / <span id="progress-total"><?php echo sizeof(json_decode($test['test'])); ?></span></div>
                 <form id="test-form" action="result.php" method="post" onsubmit="return false;"><button type="submit" id="answer" class="disabled">Ответить</button><input type="text" name="test-id" id="test-id" value="<?php echo $_GET['tId']; ?>"><input type="text" name="test-lang" id="test-lang" value="<?php echo $_GET['lang']; ?>"><input type="text" name="test-result" id="test-result"><input type="text" name="test-time" id="test-time"></form>
             </div>
         </main>
@@ -96,7 +105,7 @@ $test = $list[$_GET['tId']];
     ?>
     <script>
         if (!localStorage.getItem('testQuestions')) {
-            localStorage.setItem('testQuestions', JSON.stringify(<?php echo $test[5]; ?>))
+            localStorage.setItem('testQuestions', JSON.stringify(<?php echo $test['test']; ?>))
         }
     </script>
     <script src="../static/js/test.js"></script>

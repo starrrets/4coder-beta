@@ -1,18 +1,31 @@
 <?php
 session_start();
-header('Location: /home/');
+require_once '../include/db.php';
 require_once '../include/functions.php';
 $user = '';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
 }
+
+$page = ((isset($_GET['page'])) && ($_GET['page'] != '')) ? $_GET['page'] : 1;
+$limit = 12;
+$total_records = 0;
+
+if (isset($_GET['filter']) && $_GET['filter'] != '') {
+    $filter = $_GET['filter'];
+    $total_records = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(*) FROM `blog` WHERE topic = '$filter'"))[0];
+} else {
+    $total_records = mysqli_fetch_row(mysqli_query($link, "SELECT COUNT(*) FROM `blog`"))[0];
+}
+$total_pages = ceil($total_records / $limit);
+$start_from = ($page - 1) * $limit;
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -21,7 +34,7 @@ if ($_COOKIE['user']) {
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -43,11 +56,11 @@ if ($_COOKIE['user']) {
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
-    <title>Блог - coderley</title>
-    <meta name="description" content="Блог - coderley">
+    <title>Новости - coderley</title>
+    <meta name="description" content="Новости - coderley">
     <style>
         * {
             margin: 0;
@@ -67,7 +80,35 @@ if ($_COOKIE['user']) {
         ?>
         <div id="wrapper__block-elements"></div>
         <?php print_header($user); ?>
-        <main id="main">
+        <main id="main" class='blog'>
+
+            <?php printBlogFilter($link, $_GET['filter']); ?>
+
+            <section class="cards-section">
+
+                <?php printBlogCards($link, $_GET['filter'], $start_from, $limit);  ?>
+
+            </section>
+
+            <?php echo '<ul class="pagination" data-columns="' . ($total_pages >= 9 ? '9' : $total_pages) . '">';
+
+            if ($page > 1) {
+                echo "<li class='pagination__text'><a href='index.php?" . ($_GET['filter'] == '' ? '' : 'filter=' . $_GET['filter'] . '&') . "page=" . ($page - 1) . "' class='button'><- НАЗАД</a></li>";
+            }
+            $pList = getPageList($total_pages, $page, 9);
+            for ($i = 0; $i < sizeof($pList); $i++) {
+                if ($page == $pList[$i]) {
+                    echo "<li class='active " . ($i == sizeof($pList) - 1 ? 'last' : '') . "'>" . $pList[$i] . "</li>";
+                } elseif ($pList[$i] != 0) {
+                    echo "<li class='pagination-item " . ($i == sizeof($pList) - 1 ? 'last' : '') . "'><a href='index.php?" . ($_GET['filter'] == '' ? '' : 'filter=' . $_GET['filter'] . '&') . "page=" . $pList[$i] . "'>" . $pList[$i] . "</a></li>";
+                } else {
+                    echo "<li class='dot'>...</li>";
+                }
+            }
+            if ($total_pages > $page) {
+                echo "<li class='pagination__text'><a href='index.php?" . ($_GET['filter'] == '' ? '' : 'filter=' . $_GET['filter'] . '&') . "page=" . ($page + 1) . "' class='button'>ВПЕРЁД -></a></li>";
+            }
+            echo "</ul>";  ?>
         </main>
     </div>
     <script src="../static/js/theme.js"></script>

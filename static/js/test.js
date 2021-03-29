@@ -83,24 +83,24 @@ if (!questions) {
 		switch (answType) {
 			case 'radio':
 				for (let i = 0; i < answers.length; i++) {
-					result += `<input type="radio" name="test-question__answers" id="test-question__answers__item-${
+					result += `<div class="question-row"><input type="radio" name="test-question__answers" id="test-question__answers__item-${
 						i + 1
 					}" class="test-question__answers__item" value="${
 						i + 1
 					}"><label for="test-question__answers__item-${i + 1}">${
 						answers[i]
-					}</label>`;
+					}</label></div>`;
 				}
 				break;
 			case 'checkbox':
 				for (let i = 0; i < answers.length; i++) {
-					result += `<input type="checkbox" name="test-question__answers" id="test-question__answers__item-${
+					result += `<div class="question-row"><input type="checkbox" name="test-question__answers" id="test-question__answers__item-${
 						i + 1
 					}" class="test-question__answers__item" value="${
 						i + 1
 					}"><label for="test-question__answers__item-${i + 1}">${
 						answers[i]
-					}</label>`;
+					}</label></div>`;
 				}
 				break;
 			case 'text':

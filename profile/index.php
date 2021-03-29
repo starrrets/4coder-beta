@@ -33,7 +33,7 @@ $params = array(
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -42,7 +42,7 @@ $params = array(
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -64,7 +64,7 @@ $params = array(
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <title>Профиль - coderley</title>
@@ -82,11 +82,7 @@ $params = array(
 
 <body>
     <div id="wrapper" class="light">
-        <div id="page__block"></div>
-        <div class="alert">
-            <p id="alert__title"></p>
-            <button id="alert__btn">ок</button>
-        </div>
+
         <form id="user-edit" action="/include/change.php" method="post">
             <h2>Редактирование профиля</h2>
             <div class="user-edit__avatar-edit">
@@ -164,40 +160,41 @@ $params = array(
         <main id="main" class="profile">
             <div id="user-info">
                 <div id="user-info__avatar" style="background-image: url('<?php echo $user['avatar']; ?>');"></div>
-                <div class="user-info__block">
-                    <h2 id="user-info__username"><?php echo $user['username']; ?></h2>
-                    <p id="user-info__email"><?php echo $user['email']; ?></p>
-                    <div id="user-info__social_buttons">
-                        <a href="<?php if ($user["google_id"] == NULL) {
-                                        echo $client->createAuthUrl();
-                                    } else {
-                                        $_SESSION['delete-social'] = 'google';
-                                        echo '/include/social.php';
-                                    } ?>" class="user-info__social_registration <?php echo ($user["google_id"] != NULL ? 'user-info__social_registration__connected' : ''); ?>" id="google">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M19.3206 8.18111H10V12.0439H15.3638C14.8646 14.4985 12.7748 15.9089 10 15.9089C6.72823 15.9089 4.09111 13.2718 4.09111 9.99888C4.09111 6.72711 6.72823 4.08999 10 4.08999C11.4092 4.08999 12.683 4.59033 13.6826 5.40855L16.5928 2.49944C14.8198 0.95366 12.5465 0 10 0C4.45489 0 0 4.45377 0 10C0 15.5462 4.45377 20 10 20C15 20 19.5467 16.3633 19.5467 10C19.5467 9.409 19.456 8.77211 19.3206 8.18111Z" fill="white" />
-                            </svg>
-                        </a>
-                        <a href="<?php if ($user["yandex_id"] == NULL) {
-                                        echo $url . '?' . urldecode(http_build_query($params));
-                                    } else {
-                                        $_SESSION['delete-social'] = 'yandex';
-                                        echo '/include/social.php';
-                                    } ?>" class="user-info__social_registration <?php echo ($user["yandex_id"] != NULL ? 'user-info__social_registration__connected' : ''); ?>" id="yandex">
-                            <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M9.29716 0H6.4556C3.57673 0 0.671807 2.12586 0.671807 6.87523C0.671807 9.33531 1.71442 11.2513 3.62567 12.3409L0.127549 18.6726C-0.0383099 18.9721 -0.042646 19.3114 0.115909 19.5804C0.270713 19.8431 0.553799 20 0.872861 20H2.64243C3.04442 20 3.35786 19.8057 3.50817 19.4653L6.78806 13.05H7.02743V19.2004C7.02743 19.6339 7.39317 20 7.8261 20H9.37196C9.85747 20 10.1964 19.661 10.1964 19.1756V0.875117C10.1965 0.359883 9.82673 0 9.29716 0ZM7.02743 10.2002H6.60517C4.96786 10.2002 3.9904 8.86375 3.9904 6.62512C3.9904 3.84156 5.22517 2.8498 6.38079 2.8498H7.02743V10.2002Z" fill="black" />
-                            </svg>
 
-                        </a>
-                    </div>
-                </div>
-                <!-- user-info__buttons__admin -->
                 <div id="user-info__buttons">
+                    <?php echo $user['role'] != 'user' ? '<a id="user-info__admin" href="/dashboard/">ADMIN</a>' : ''; ?>
                     <button id="user-info__change_button">Редактировать профиль</button>
                     <a id="user-info__logout" href="/include/logout.php">Выйти</a>
-                    <!-- <a id="user-info__create" href="">Написать статью</a> -->
                 </div>
 
+            </div>
+            <div class="user-info__block">
+                <h2 id="user-info__username"><?php echo $user['username']; ?></h2>
+                <p id="user-info__email"><?php echo $user['email']; ?></p>
+                <p id="user-info__accounts">Подключённые аккаунты:</p>
+                <div id="user-info__social_buttons">
+                    <a href="<?php if ($user["google_id"] == NULL) {
+                                    echo $client->createAuthUrl();
+                                } else {
+                                    $_SESSION['delete-social'] = 'google';
+                                    echo '/include/social.php';
+                                } ?>" class="user-info__social_registration <?php echo ($user["google_id"] != NULL ? 'user-info__social_registration__connected' : ''); ?>" id="google">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.3206 8.18111H10V12.0439H15.3638C14.8646 14.4985 12.7748 15.9089 10 15.9089C6.72823 15.9089 4.09111 13.2718 4.09111 9.99888C4.09111 6.72711 6.72823 4.08999 10 4.08999C11.4092 4.08999 12.683 4.59033 13.6826 5.40855L16.5928 2.49944C14.8198 0.95366 12.5465 0 10 0C4.45489 0 0 4.45377 0 10C0 15.5462 4.45377 20 10 20C15 20 19.5467 16.3633 19.5467 10C19.5467 9.409 19.456 8.77211 19.3206 8.18111Z" fill="white" />
+                        </svg>
+                    </a>
+                    <a href="<?php if ($user["yandex_id"] == NULL) {
+                                    echo $url . '?' . urldecode(http_build_query($params));
+                                } else {
+                                    $_SESSION['delete-social'] = 'yandex';
+                                    echo '/include/social.php';
+                                } ?>" class="user-info__social_registration <?php echo ($user["yandex_id"] != NULL ? 'user-info__social_registration__connected' : ''); ?>" id="yandex">
+                        <svg width="11" height="20" viewBox="0 0 11 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.29716 0H6.4556C3.57673 0 0.671807 2.12586 0.671807 6.87523C0.671807 9.33531 1.71442 11.2513 3.62567 12.3409L0.127549 18.6726C-0.0383099 18.9721 -0.042646 19.3114 0.115909 19.5804C0.270713 19.8431 0.553799 20 0.872861 20H2.64243C3.04442 20 3.35786 19.8057 3.50817 19.4653L6.78806 13.05H7.02743V19.2004C7.02743 19.6339 7.39317 20 7.8261 20H9.37196C9.85747 20 10.1964 19.661 10.1964 19.1756V0.875117C10.1965 0.359883 9.82673 0 9.29716 0ZM7.02743 10.2002H6.60517C4.96786 10.2002 3.9904 8.86375 3.9904 6.62512C3.9904 3.84156 5.22517 2.8498 6.38079 2.8498H7.02743V10.2002Z" fill="black" />
+                        </svg>
+
+                    </a>
+                </div>
             </div>
             <div class="user-progress">
                 <div class="user-progress__navbar">

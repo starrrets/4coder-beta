@@ -12,17 +12,24 @@ require_once '../include/db.php';
 require_once '../include/functions.php';
 $list = get_article_list($link, $_GET['lang']);
 $id = $_GET['id'];
-$list_size = sizeof($list) - 1;
-if ($id > $list_size || $id < 0) {
-    header('HTTP/1.1 404 Not Found', true, 404);
+if ($id > $list[sizeof($list) - 1][0] || $id < 0) {
+    header('Location: /education/list.php?lang=' . $_GET['lang']);
 }
+$articleId = 0;
+for ($i = 0; $i < sizeof($list); $i++) {
+    if ($list[$i][0] == ($id + 1)) {
+        $articleId = $i;
+        break;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -31,7 +38,7 @@ if ($id > $list_size || $id < 0) {
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -53,12 +60,12 @@ if ($id > $list_size || $id < 0) {
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <link rel="stylesheet" href="../static/css/prism.min.css">
-    <title><?php echo $list[$id][2]; ?> - coderley</title>
-    <meta name="description" content="<?php echo $list[$id][2]; ?>">
+    <title><?php echo $list[$articleId][3]; ?> - coderley</title>
+    <meta name="description" content="<?php echo $list[$articleId][3]; ?>">
     <style>
         * {
             margin: 0;
@@ -79,7 +86,8 @@ if ($id > $list_size || $id < 0) {
         <div id="wrapper__block-elements"></div>
         <?php print_header($user); ?>
         <main id="main" class="article">
-            <?php print__article($list, $id);
+            <a href="./list.php?lang=<?php echo $_GET['lang']; ?>" class='back-button'>назад</a>
+            <?php print__article($list, $articleId);
             ?>
             <div class="disqus_wrapper">
                 <div id="disqus_thread"></div>

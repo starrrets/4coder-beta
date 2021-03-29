@@ -5,6 +5,9 @@ if (!$_GET['lang']) {
 }
 require_once '../include/db.php';
 require_once '../include/functions.php';
+if (!isLanguageExist($link, 'tasks', $_GET['lang'])) {
+    header('Location: /tasks/');
+}
 $user = '';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
@@ -16,7 +19,7 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -25,7 +28,7 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -47,7 +50,7 @@ $list = get_tt_list($link, 'tasks', $_GET['lang']);
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <title>Задачи - coderley</title>

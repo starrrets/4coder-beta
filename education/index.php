@@ -1,17 +1,20 @@
 <?php
 session_start();
+require_once '../include/db.php';
 require_once '../include/functions.php';
 $user = '';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
 }
+$icons = getIcons($link);
+$languages = getAllLanguagesInTable($link, 'education');
 ?>
 <!DOCTYPE html>
 <html lang="ru">
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -20,7 +23,7 @@ if ($_COOKIE['user']) {
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -42,7 +45,7 @@ if ($_COOKIE['user']) {
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <title>Обучение - coderley</title>
@@ -66,11 +69,12 @@ if ($_COOKIE['user']) {
         ?>
         <div id="wrapper__block-elements"></div>
         <?php print_header($user); ?>
-        <main id="main">
-            <a href="/education/list.php?lang=python" class="education-card" id="python">
-                <div class="education-card__image"></div>
-                <div class="education-card__title">Python</div>
-            </a>
+        <main id="main" class='education'>
+            <?php
+            for ($i = 0; $i < sizeof($languages); $i++) {
+                echo '<a href="/education/list.php?lang=' . $languages[$i][0] . '" class="card" >' . $icons[$languages[$i][0]] . '<div class="card__title">' . ucfirst($languages[$i][0]) . '</div><div class="card__subtitle">Уроков: ' . getRowsCount($link, 'education', $languages[$i][0]) . '</div></a>';
+            }
+            ?>
         </main>
     </div>
     <script src="../static/js/theme.js"></script>

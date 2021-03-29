@@ -16,13 +16,12 @@ $userAnswers = '';
 $user = '';
 if ($_POST) {
     $testLang = $_POST['test-lang'];
-    $list = get_tt_list($link, 'tests', $testLang);
     $testId = $_POST['test-id'];
-    $test = $list[$testId];
+    $test = get_tt_item($link, 'tests', $testLang, $testId);
     $rightAnswers = 0;
     $userAnswers = json_decode($_POST['test-result']);
-    $testAnswers = json_decode($test[6]);
-    $questions = json_decode($test[5]);
+    $testAnswers = json_decode($test['answers']);
+    $questions = json_decode($test['test']);
     $testSize = sizeof($testAnswers);
     for ($i = 0; $i < $testSize; $i++) {
         if ($userAnswers[$i] == $testAnswers[$i])
@@ -35,30 +34,29 @@ if ($_POST) {
     setcookie('last-test-result', $testResult, time() + 3600 * 24, '/');
     setcookie('last-test-time', $testTime, time() + 3600 * 24, '/');
     setcookie('last-test-answers', json_encode($userAnswers), time() + 3600 * 24, '/');
-    setcookie('test-' . $testId, 'day_block', time() + 3600 * 24, '/');
+    setcookie('test-' . $testLang . '-' . $test['id'], 'day_block', time() + 3600 * 24, '/');
 } else {
     $testLang = $_COOKIE['last-test-lang'];
     $testId = $_COOKIE['last-test-id'];
     $testResult = $_COOKIE['last-test-result'];
     $testTime = $_COOKIE['last-test-time'];
     $userAnswers = json_decode($_COOKIE['last-test-answers']);
-    $list = get_tt_list($link, 'tests', $testLang);
-    $test = $list[$testId];
-    $testAnswers = json_decode($test[6]);
-    $questions = json_decode($test[5]);
+    $test = get_tt_item($link, 'tests', $testLang, $testId);
+    $testAnswers = json_decode($test['answers']);
+    $questions = json_decode($test['test']);
     $testSize = sizeof($testAnswers);
     setcookie('last-test-lang', $testLang, time() + 3600, '/');
     setcookie('last-test-id', $testId, time() + 3600, '/');
     setcookie('last-test-result', $testResult, time() + 3600, '/');
     setcookie('last-test-time', $testTime, time() + 3600, '/');
     setcookie('last-test-answers', json_encode($userAnswers), time() + 3600, '/');
-    setcookie('test-' . $testId, 'day_block', time() + 3600, '/');
+    setcookie('test-' . $testLang . '-' . $test['id'], 'day_block', time() + 3600, '/');
 }
 $success = $testResult >= $testSize * 0.8 ? 'success' : 'failure';
 if ($_COOKIE['user']) {
     $user = json_decode($_COOKIE['user'], true);
     if ($testResult >= $testSize * 0.8) {
-        save_test_result($user['id'], $link, $testId, $testResult . ' / ' . $testSize, time() + 3600 * 24);
+        save_test_result($user['id'], $link, $testId, $testLang, $testResult . ' / ' . $testSize, time() + 3600 * 24);
     }
 }
 ?>
@@ -67,7 +65,7 @@ if ($_COOKIE['user']) {
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -76,7 +74,7 @@ if ($_COOKIE['user']) {
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -98,7 +96,7 @@ if ($_COOKIE['user']) {
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <title>Результат теста - coderley</title>
@@ -145,10 +143,16 @@ if ($_COOKIE['user']) {
                 <div class="result-failures__wrapper">
                     <?php
                     for ($i = 0; $i < $testSize; $i++) {
-                        $temp = $questions[$i]->answerVariants[$userAnswers[$i] - 1];
-                        $userAnswer = '';
                         switch ($questions[$i]->answerType) {
+                            case 'radio':
+                                $temp = $questions[$i]->answerVariants[$userAnswers[$i] - 1];
+                                $userAnswer = $temp == '' ? 'Нет ответа' : $temp;
+                                break;
+                            case 'text':
+                                $userAnswer = $userAnswers[$i] == '' ? 'Нет ответа' : $userAnswers[$i];
+                                break;
                             case 'checkbox':
+                                $temp = $questions[$i]->answerVariants[$userAnswers[$i] - 1];
                                 if ($userAnswers[$i] > 0) {
                                     $temp = explode(',', $userAnswers[$i]);
                                     $answers = $questions[$i]->answerVariants;
@@ -161,7 +165,7 @@ if ($_COOKIE['user']) {
                                 }
                                 break;
                             default:
-                                $userAnswer = $temp == '' ? 'Нет ответа' : $temp;
+
                                 break;
                         }
                         if ($userAnswers[$i] != $testAnswers[$i])

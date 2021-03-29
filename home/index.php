@@ -11,7 +11,7 @@ if ($_COOKIE['user']) {
 
 <head>
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RDEBLZCRX1"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RHYX25Y164"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -20,7 +20,7 @@ if ($_COOKIE['user']) {
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-RDEBLZCRX1');
+        gtag('config', 'G-RHYX25Y164');
     </script>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
@@ -42,7 +42,7 @@ if ($_COOKIE['user']) {
     </noscript> <!-- /Yandex.Metrika counter -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../static/css/secondary.min.css">
     <title>Главная - coderley</title>
@@ -76,7 +76,7 @@ if ($_COOKIE['user']) {
             <a href="/tests/" class="home-link">
                 <div class="home-card tests"><span class="home-card__title">Тесты</span></div>
             </a>
-            <a href="/blog/" class="home-link home-link--block">
+            <a href="/blog/" class="home-link">
                 <div class="home-card blog"><span class="home-card__title">Блог</span></div>
             </a>
         </main>
